@@ -1,0 +1,18 @@
+server:
+  port: 3000
+
+spring:
+  application:
+    name: metrics-producer
+
+  kafka:
+    producer:
+      report-topic-name: "report-topic"
+management:
+  endpoint:
+    metrics:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: metrics

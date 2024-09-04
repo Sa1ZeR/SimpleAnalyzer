@@ -1,0 +1,5 @@
+rootProject.name = 'SimpleAnalyzer'
+
+include('metrics-producer')
+include('metrics-consumer')
+
