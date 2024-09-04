@@ -8,6 +8,11 @@ spring:
   kafka:
     producer:
       report-topic-name: "report-topic"
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+      min-insync-replicas: 1
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      key-serializer: org.apache.kafka.common.serialization.LongSerializer
+      acks: "all"
 management:
   endpoint:
     metrics:

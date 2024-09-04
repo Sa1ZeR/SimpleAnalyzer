@@ -1,6 +1,7 @@
 package com.sa1zer.simpleanalyzer.metricsproducer.service;
 
-import com.sa1zer.simpleanalyzer.metricsproducer.domain.MetricReport;
+import com.sa1zer.simpleanalyzer.domain.MetricReport;
+import com.sa1zer.simpleanalyzer.utils.TimeUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,14 +17,14 @@ import java.util.concurrent.ExecutionException;
 @RequiredArgsConstructor
 public class NotificationService {
 
-    private KafkaTemplate<LocalDateTime, Object> kafkaTemplate;
+    private final KafkaTemplate<Long, Object> kafkaTemplate;
 
     @Value("${spring.kafka.producer.report-topic-name}")
     private String reportTopic;
 
     public void sendReport(MetricReport report) {
         try {
-            var result = kafkaTemplate.send(reportTopic, report.date(), report).get();
+            var result = kafkaTemplate.send(reportTopic, TimeUtils.toUnixTime(report.date()), report).get();
             log.info("Successfully sent report data {}-{}", result.getRecordMetadata().topic(), result.getRecordMetadata().partition());
         } catch (InterruptedException | ExecutionException e) {
             log.error("Can't send report data: ", e);

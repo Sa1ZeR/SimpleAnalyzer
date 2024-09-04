@@ -1,5 +1,6 @@
 package com.sa1zer.simpleanalyzer.metricsconsumer.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
@@ -21,6 +22,7 @@ public class Report {
     private Long id;
 
     @Column(nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd hh:mm:ss")
     private LocalDateTime dateTime;
 
     @Column(nullable = false)
@@ -28,9 +30,6 @@ public class Report {
 
     @Column(nullable = false)
     private Double totalSpace;
-
-    @Column(nullable = false)
-    private Double usedMemory;
 
     @Column(nullable = false)
     private Double jvmUsed;

@@ -1,6 +1,6 @@
 package com.sa1zer.simpleanalyzer.metricsproducer.service.metric;
 
-import com.sa1zer.simpleanalyzer.metricsproducer.domain.MetricReport;
+import com.sa1zer.simpleanalyzer.domain.MetricReport;
 import io.micrometer.core.instrument.Measurement;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.search.RequiredSearch;

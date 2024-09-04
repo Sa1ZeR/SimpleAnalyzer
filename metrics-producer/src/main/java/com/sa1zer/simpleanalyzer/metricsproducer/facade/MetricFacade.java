@@ -1,6 +1,6 @@
 package com.sa1zer.simpleanalyzer.metricsproducer.facade;
 
-import com.sa1zer.simpleanalyzer.metricsproducer.domain.MetricReport;
+import com.sa1zer.simpleanalyzer.domain.MetricReport;
 import com.sa1zer.simpleanalyzer.metricsproducer.service.MetricGeneratorService;
 import com.sa1zer.simpleanalyzer.metricsproducer.service.NotificationService;
 import lombok.RequiredArgsConstructor;

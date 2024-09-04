@@ -1,0 +1,46 @@
+version: '3.9'
+services:
+  kafka:
+    container_name: kafka
+    image: bitnami/kafka:latest
+    ports:
+      - "9092:9092"
+      - "9091:9091"
+      - "9090:9090"
+    environment:
+      - KAFKA_CFG_NODE_ID=1
+      - KAFKA_KRAFT_CLUSTER_ID=PVjHlx7ESeHesq55jeB6Ef #должен быть одинаковый для всех серверов кластера
+      - KAFKA_CFG_PROCESS_ROLES=controller,broker #controller - работа с метаданными #brocker - работа с сообщениями
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9091 #список контроллеров
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9090,CONTROLLER://:9091,EXTERNAL://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka-1:9090,EXTERNAL://${HOSTNAME:-localhost}:9092
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+    volumes:
+      - "./kafka:/bitnami/kafka"
+    restart: always
+    healthcheck:
+      test: kafka-topics.sh --list --bootstrap-server localhost:9092 || exit 1
+      interval: 1s
+      timeout: 60s
+      retries: 60
+  db:
+    image: postgres:15.2-alpine
+    container_name: 'postgre'
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data1/pgdata/ #save information from container to localstorage
+    user: postgres
+    environment:
+      POSTGRES_DB: simpleanalyzer
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      PGDATA: /var/lib/postgresql/data/pgdata
+    healthcheck:
+      test: [ "CMD", "pg_isready","-d","simpleanalyzer","-U","postgres" ]
+      interval: 5s
+      timeout: 1s
+      retries: 5
+    restart: always

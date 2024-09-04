@@ -1,6 +1,6 @@
 package com.sa1zer.simpleanalyzer.metricsproducer.api;
 
-import com.sa1zer.simpleanalyzer.metricsproducer.domain.MetricReport;
+import com.sa1zer.simpleanalyzer.domain.MetricReport;
 import com.sa1zer.simpleanalyzer.metricsproducer.facade.MetricFacade;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package com.sa1zer.simpleanalyzer.metricsconsumer.api;
 
-import com.sa1zer.simpleanalyzer.metricsconsumer.ReportService;
+import com.sa1zer.simpleanalyzer.metricsconsumer.service.ReportService;
 import com.sa1zer.simpleanalyzer.metricsconsumer.entity.Report;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

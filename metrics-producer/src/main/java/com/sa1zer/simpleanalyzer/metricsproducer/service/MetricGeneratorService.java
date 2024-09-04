@@ -1,6 +1,6 @@
 package com.sa1zer.simpleanalyzer.metricsproducer.service;
 
-import com.sa1zer.simpleanalyzer.metricsproducer.domain.MetricReport;
+import com.sa1zer.simpleanalyzer.domain.MetricReport;
 import com.sa1zer.simpleanalyzer.metricsproducer.service.metric.MetricHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
