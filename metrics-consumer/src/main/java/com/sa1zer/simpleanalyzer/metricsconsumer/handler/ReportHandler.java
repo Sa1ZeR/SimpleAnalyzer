@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -16,6 +17,7 @@ public class ReportHandler {
 
     private final ReportFacade reportFacade;
 
+    @Retryable
     @KafkaHandler()
     public void handleReport(MetricReport report) {
         log.info("Received report {} ", report);

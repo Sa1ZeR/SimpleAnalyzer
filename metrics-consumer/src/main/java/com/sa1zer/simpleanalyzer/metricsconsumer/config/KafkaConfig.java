@@ -47,9 +47,4 @@ public class KafkaConfig {
 
         return factory;
     }
-
-//    @Bean
-//    public CommonErrorHandler errorHandler(KafkaOperations<Object, Object> kafkaOperations) {
-//        return new DefaultErrorHandler(new DeadLetterPublishingRecoverer(kafkaOperations), new FixedBackOff(1000L, 3));
-//    }
 }
