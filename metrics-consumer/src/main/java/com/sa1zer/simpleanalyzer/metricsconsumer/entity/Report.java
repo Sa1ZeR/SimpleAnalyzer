@@ -22,7 +22,6 @@ public class Report {
     private Long id;
 
     @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd hh:mm:ss")
     private LocalDateTime dateTime;
 
     @Column(nullable = false)
